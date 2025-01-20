@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Newspaper list
+    <a href="{% url 'agency:newspaper-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+{#  {% include "includes/search_form.html" %}#}
+  {% if newspaper_list %}
+    <ul>
+      {% for newspaper in newspaper_list %}
+        <li>
+          <a href="{% url "agency:newspaper-detail" pk=newspaper.id %} ">{{ newspaper.id }}</a>
+          {{ newspaper.title }} ({{ newspaper.published_date }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no newspapers for the moment</p>
+  {% endif %}
+{% endblock %}

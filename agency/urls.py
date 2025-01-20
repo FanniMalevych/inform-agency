@@ -6,6 +6,11 @@ from .views import (
     TopicCreateView,
     TopicUpdateView,
     TopicDeleteView,
+    NewspaperListView,
+    NewspaperDetailView,
+    NewspaperCreateView,
+    NewspaperUpdateView,
+    NewspaperDeleteView,
 )
 
 urlpatterns = [
@@ -30,11 +35,11 @@ urlpatterns = [
         TopicDeleteView.as_view(),
         name="topic-delete",
     ),
-    # path("cars/", CarListView.as_view(), name="car-list"),
-    # path("cars/<int:pk>/", CarDetailView.as_view(), name="car-detail"),
-    # path("cars/create/", CarCreateView.as_view(), name="car-create"),
-    # path("cars/<int:pk>/update/", CarUpdateView.as_view(), name="car-update"),
-    # path("cars/<int:pk>/delete/", CarDeleteView.as_view(), name="car-delete"),
+    path("newspapers/", NewspaperListView.as_view(), name="newspaper-list"),
+    path("newspapers/<int:pk>/", NewspaperDetailView.as_view(), name="newspaper-detail"),
+    path("newspapers/create/", NewspaperCreateView.as_view(), name="newspaper-create"),
+    path("newspapers/<int:pk>/update/", NewspaperUpdateView.as_view(), name="newspaper-update"),
+    path("newspapers/<int:pk>/delete/", NewspaperDeleteView.as_view(), name="newspaper-delete"),
     # path(
     #     "cars/<int:pk>/toggle-assign/",
     #     toggle_assign_to_car,

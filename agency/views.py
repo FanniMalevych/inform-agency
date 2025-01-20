@@ -67,3 +67,28 @@ class NewspaperUpdateView(generic.UpdateView):
 class NewspaperDeleteView(generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("agency:newspaper-list")
+
+
+class RedactorListView(generic.ListView):
+    model = Redactor
+    paginate_by = 10
+
+
+class RedactorDetailView(generic.DetailView):
+    model = Redactor
+
+
+class RedactorCreateView(generic.CreateView):
+    model = Redactor
+    fields = "__all__"
+    success_url = reverse_lazy("agency:redactor-list")
+
+
+class RedactorUpdateView(generic.UpdateView):
+    model = Redactor
+    fields = "__all__"
+
+
+class RedactorDeleteView(generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("agency:redactor-list")

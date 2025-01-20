@@ -11,6 +11,11 @@ from .views import (
     NewspaperCreateView,
     NewspaperUpdateView,
     NewspaperDeleteView,
+    RedactorListView,
+    RedactorDetailView,
+    RedactorCreateView,
+    RedactorUpdateView,
+    RedactorDeleteView,
 )
 
 urlpatterns = [
@@ -45,25 +50,25 @@ urlpatterns = [
     #     toggle_assign_to_car,
     #     name="toggle-car-assign",
     # ),
-    # path("drivers/", DriverListView.as_view(), name="driver-list"),
-    # path(
-    #     "drivers/<int:pk>/", DriverDetailView.as_view(), name="driver-detail"
-    # ),
-    # path("drivers/", DriverListView.as_view(), name="driver-list"),
-    # path(
-    #     "drivers/<int:pk>/", DriverDetailView.as_view(), name="driver-detail"
-    # ),
-    # path("drivers/create/", DriverCreateView.as_view(), name="driver-create"),
-    # path(
-    #     "drivers/<int:pk>/update/",
-    #     DriverLicenseUpdateView.as_view(),
-    #     name="driver-update",
-    # ),
-    # path(
-    #     "drivers/<int:pk>/delete/",
-    #     DriverDeleteView.as_view(),
-    #     name="driver-delete",
-    # ),
+    path("redactors/", RedactorListView.as_view(), name="redactor-list"),
+    path(
+        "redactors/<int:pk>/", RedactorDetailView.as_view(), name="redactor-detail"
+    ),
+    path("redactors/", RedactorListView.as_view(), name="redactor-list"),
+    path(
+        "redactors/<int:pk>/", RedactorDetailView.as_view(), name="redactor-detail"
+    ),
+    path("redactors/create/", RedactorCreateView.as_view(), name="redactor-create"),
+    path(
+        "redactors/<int:pk>/update/",
+        RedactorUpdateView.as_view(),
+        name="redactor-update",
+    ),
+    path(
+        "redactors/<int:pk>/delete/",
+        RedactorDeleteView.as_view(),
+        name="redactor-delete",
+    ),
 ]
 
 app_name = "agency"

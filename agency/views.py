@@ -90,5 +90,5 @@ class RedactorUpdateView(generic.UpdateView):
 
 
 class RedactorDeleteView(generic.DeleteView):
-    model = Newspaper
+    model = Redactor
     success_url = reverse_lazy("agency:redactor-list")

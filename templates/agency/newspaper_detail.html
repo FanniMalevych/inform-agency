@@ -11,14 +11,16 @@
       Update
     </a>
   </h1>
+  <h3>Published date: {{ newspaper.published_date }}</h3>
   <h2>Topics:</h2>
+  <hr>
   <ul>
     {% for topic in newspaper.topic.all %}
       <li>{{ topic.name }}</li>
     {% endfor %}
   </ul>
   <h1>
-    Redactors
+    Redactors:
 
 {#    {% if car in user.cars.all %}#}
 {#      <a href="{% url 'taxi:toggle-car-assign' pk=car.id %}" class="btn btn-danger link-to-page">#}
@@ -34,7 +36,12 @@
   <hr>
   <ul>
     {% for redactor in newspaper.redactor.all %}
-      <li>{{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }})</li>
+      <li><a href="{% url 'agency:redactor-detail' pk=redactor.id %}">{{ redactor.username }} </a>({{ redactor.first_name }} {{ redactor.last_name }})</li>
     {% endfor %}
   </ul>
+
+  <hr>
+  {{ newspaper.content }}
+
+
 {% endblock %}

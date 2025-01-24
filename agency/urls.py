@@ -16,6 +16,7 @@ from .views import (
     RedactorCreateView,
     RedactorUpdateView,
     RedactorDeleteView,
+    toggle_assign_to_newspaper
 )
 
 urlpatterns = [
@@ -45,11 +46,11 @@ urlpatterns = [
     path("newspapers/create/", NewspaperCreateView.as_view(), name="newspaper-create"),
     path("newspapers/<int:pk>/update/", NewspaperUpdateView.as_view(), name="newspaper-update"),
     path("newspapers/<int:pk>/delete/", NewspaperDeleteView.as_view(), name="newspaper-delete"),
-    # path(
-    #     "cars/<int:pk>/toggle-assign/",
-    #     toggle_assign_to_car,
-    #     name="toggle-car-assign",
-    # ),
+    path(
+        "newspapers/<int:pk>/toggle-assign/",
+        toggle_assign_to_newspaper,
+        name="toggle-newspaper-assign",
+    ),
     path("redactors/", RedactorListView.as_view(), name="redactor-list"),
     path(
         "redactors/<int:pk>/", RedactorDetailView.as_view(), name="redactor-detail"

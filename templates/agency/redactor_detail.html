@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="d-flex justify-content-around mt-3">
+      <a href="javascript:history.go(-1)" class="btn btn-light ml-3">back</a>
+      <h3 class="text-black-50 mb-0 mt-2">Username: {{ redactor.username }}</h3>
+      <div class="d-flex">
+        <a href="{% url 'agency:redactor-delete' pk=redactor.id %}" class="btn btn-danger">
+          Delete
+        </a>
+        <a href="{% url 'agency:redactor-update' pk=redactor.id %}" class="btn btn-light ml-3">
+          Update info
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column align-items-end mr-5">
+    <p><strong>First name:</strong> {{ redactor.first_name }}</p>
+    <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
+    <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
+  </div>
+
+  <div class="ml-5">
+    <h4>Newspapers</h4>
+    {% for newspaper in redactor.newspapers.all %}
+      <hr>
+      <p><strong>Title:</strong> {{ newspaper.title }}.
+        <a href="{% url "agency:newspaper-detail" pk=newspaper.id %}">See more...</a></p>
+      <div><p><strong>Topic:</strong></p>
+        <ul>
+          {% for topic in newspaper.topic.all %}
+            <li>{{ topic.name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    {% empty %}
+      <p>No newspapers</p>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% if user.is_authenticated %}
+  <nav
+      class="navbar navbar-expand-lg navbar-dark bg-gradient-dark z-index-3 py-3">
+    <div class="container">
+      <a class="navbar-brand text-white text-uppercase" href="{% url 'agency:index' %}" data-placement="bottom">
+        InfoStruct
+      </a>
+      <span class="text-white ml-3">Welcome, {{ user.get_username }}</span>
+
+      <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover mx-auto">
+          <li class="nav-item mx-2">
+            <a class="text-white nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+               role="button" href="{% url 'agency:topic-list' %}">
+              TOPICS
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="text-white nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+               role="button" href="{% url 'agency:redactor-list' %}">
+              REDACTORS
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="text-white nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+               role="button" href="{% url 'agency:newspaper-list' %}">
+              NEWSPAPERS
+            </a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav d-lg-block d-none">
+          <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm  btn-dark  btn-round mb-0 me-1">logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+{% endif %}

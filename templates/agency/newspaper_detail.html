@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="mt-3 d-flex justify-content-around">
+    <a href="javascript:history.go(-1)" class="btn btn-light ml-3">back</a>
+    <h3>
+      {{ newspaper.title }}
+    </h3>
+    <div>
+      <a href="{% url 'agency:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger">
+        Delete
+      </a>
+      <a href="{% url 'agency:newspaper-update' pk=newspaper.id %}" class="btn btn-light ml-3">
+        Update
+      </a>
+    </div>
+  </div>
+
+  <h5>Published date: {{ newspaper.published_date }}</h5>
+  <h3>Topics:</h3>
+  <ul>
+    {% for topic in newspaper.topic.all %}
+      <li>{{ topic.name }}</li>
+    {% endfor %}
+  </ul>
+  <h3>
+    Redactors:
+    {% if newspaper in user.newspapers.all %}
+      <a href="{% url 'agency:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-outline-danger ml-5">
+        Remove me from this newspaper
+      </a>
+    {% else %}
+      <a href="{% url 'agency:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-outline-dark ml-5">
+        Assign me to this newspaper
+      </a>
+    {% endif %}
+  </h3>
+  <ul>
+    {% for redactor in newspaper.redactor.all %}
+      <li><a
+          href="{% url 'agency:redactor-detail' pk=redactor.id %}">{{ redactor.username }} </a>({{ redactor.first_name }} {{ redactor.last_name }})
+      </li>
+    {% endfor %}
+  </ul>
+  <hr>
+  {{ newspaper.content }}
+
+{% endblock %}

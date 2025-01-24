@@ -1,12 +1,12 @@
-from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
 from agency.forms import TopicSearchForm, NewspaperTitleSearchForm, RedactorUsernameSearchForm, NewspaperForm, \
-    RedactorCreationForm, RedactorForm
+    RedactorCreationForm, RedactorForm, TopicForm
 from agency.models import Redactor, Topic, Newspaper
 
 
@@ -17,7 +17,6 @@ def index(request):
     num_redactors = Redactor.objects.count()
     num_topics = Topic.objects.count()
     num_newspapers = Newspaper.objects.count()
-
 
     context = {
         "num_redactors": num_redactors,
@@ -50,13 +49,13 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
 
 class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     model = Topic
-    fields = "__all__"
+    form_class = TopicForm
     success_url = reverse_lazy("agency:topic-list")
 
 
 class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
-    fields = "__all__"
+    form_class = TopicForm
     success_url = reverse_lazy("agency:topic-list")
 
 
@@ -106,9 +105,21 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("agency:newspaper-list")
 
 
+@login_required
+def toggle_assign_to_newspaper(request, pk):
+    redactor = Redactor.objects.get(id=request.user.id)
+    if (
+            Newspaper.objects.get(id=pk) in redactor.newspapers.all()
+    ):
+        redactor.newspapers.remove(pk)
+    else:
+        redactor.newspapers.add(pk)
+    return HttpResponseRedirect(reverse_lazy("agency:newspaper-detail", args=[pk]))
+
+
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
-    paginate_by = 10
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(RedactorListView, self).get_context_data(**kwargs)
@@ -123,7 +134,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
             return Redactor.objects.filter(
                 username__icontains=form.cleaned_data["username"]
             )
-        return Redactor.objects.all()
+        return Redactor.objects.all().order_by("username")
 
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):

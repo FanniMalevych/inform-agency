@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Newspaper list
-    <a href="{% url 'agency:newspaper-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
+  <div class="text-center mx-auto mt-3">
+    <h1 class="text-black-50">
+      Newspaper list
+      <a href="{% url 'agency:newspaper-create' %}" class="btn btn-sm  btn-dark  btn-round mb-0 me-1 ml-5">
+        +
+      </a>
+    </h1>
+  </div>
   {% include "includes/search_form.html" %}
   {% if newspaper_list %}
     <ul>
       {% for newspaper in newspaper_list %}
         <li>
           <a href="{% url "agency:newspaper-detail" pk=newspaper.id %}">{{ newspaper.title }}</a>
-           ({{ newspaper.published_date }})
+          ({{ newspaper.published_date }})
         </li>
       {% endfor %}
     </ul>

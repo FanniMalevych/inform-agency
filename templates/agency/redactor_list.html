@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Redactor List
-    <a href="{% url 'agency:redactor-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
-      {% include "includes/search_form.html" %}
+  <div class="text-center mx-auto mt-3">
+    <h1 class="text-black-50">
+      Redactor List
+      <a href="{% url 'agency:redactor-create' %}" class="btn btn-sm  btn-dark  btn-round mb-0 me-1 ml-5">
+        +
+      </a>
+    </h1>
+  </div>
+  {% include "includes/search_form.html" %}
   {% if redactor_list %}
     <table class="table">
       <tr>
@@ -27,7 +29,6 @@
           <td>{{ redactor.years_of_experience }}</td>
         </tr>
       {% endfor %}
-
     </table>
   {% else %}
     <p>There are no redactors at the moment.</p>

@@ -1,7 +1,25 @@
 ## Inform agency "InfoStruct"
 
-### Here is implementation of inform agency, where you can store info about redactors and their newspapers. Also implemented ability to get detailed data and update it if needed.
+https://inform-agency.onrender.com/
+- Login: `admin.user`
+- Password: `1qazcde3`
 
+
+## Getting started
+
+1. Clone the repository
+
+`git clone https://github.com/FanniMalevych/inform-agency.git`
+
+2. Create virtual environment and install dependencies 
+
+`python -m venv venv`
+
+ `venv\Scripts\activate (on Windows)`
+
+ `source venv/bin/activate (on macOS)`
+
+ `pip install -r requirements.txt`
 
 - If you want to use test data run 
 
@@ -12,6 +30,17 @@
     - Password: `1qazcde3`
 
 Feel free to add more data using admin panel, if needed.
+
+## Features
+
+- list of topics, redactors and newspapers
+- ability to add/update/delete data
+- ability to assign/remove user to newspaper as redactor
+
+## Links
+
+- Repository: https://github.com/FanniMalevych/inform-agency.git
+- Project page: https://inform-agency.onrender.com/
 
 #### main page view:
 

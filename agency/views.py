@@ -5,13 +5,15 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from agency.forms import (TopicSearchForm,
-                          NewspaperTitleSearchForm,
-                          RedactorUsernameSearchForm,
-                          NewspaperForm,
-                          RedactorCreationForm,
-                          RedactorForm,
-                          TopicForm)
+from agency.forms import (
+    TopicSearchForm,
+    NewspaperTitleSearchForm,
+    RedactorUsernameSearchForm,
+    NewspaperForm,
+    RedactorCreationForm,
+    RedactorForm,
+    TopicForm,
+)
 from agency.models import Redactor, Topic, Newspaper
 
 
@@ -46,9 +48,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         form = TopicSearchForm(self.request.GET)
         if form.is_valid():
-            return Topic.objects.filter(
-                name__icontains=form.cleaned_data["name"]
-            )
+            return Topic.objects.filter(name__icontains=form.cleaned_data["name"])
         return Topic.objects.all()
 
 
@@ -83,9 +83,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         form = NewspaperTitleSearchForm(self.request.GET)
         if form.is_valid():
-            return Newspaper.objects.filter(
-                title__icontains=form.cleaned_data["title"]
-            )
+            return Newspaper.objects.filter(title__icontains=form.cleaned_data["title"])
         return Newspaper.objects.all()
 
 
@@ -113,9 +111,7 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
 @login_required
 def toggle_assign_to_newspaper(request, pk):
     redactor = Redactor.objects.get(id=request.user.id)
-    if (
-            Newspaper.objects.get(id=pk) in redactor.newspapers.all()
-    ):
+    if Newspaper.objects.get(id=pk) in redactor.newspapers.all():
         redactor.newspapers.remove(pk)
     else:
         redactor.newspapers.add(pk)

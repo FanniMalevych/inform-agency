@@ -8,15 +8,15 @@ from accounts.forms import LoginForm
 
 def login(request: HttpRequest) -> HttpResponse:
     form = LoginForm()
-    if request.method == 'POST':
-        uname = request.POST.get('username')
-        upass = request.POST.get('password')
+    if request.method == "POST":
+        uname = request.POST.get("username")
+        upass = request.POST.get("password")
         user = authenticate(username=uname, password=upass)
         if user is not None:
             auth_login(request, user)
-            return redirect('agency:index')
+            return redirect("agency:index")
     else:
         if request.user.is_authenticated:
-            return redirect('agency:index')
+            return redirect("agency:index")
         else:
-            return render(request, 'registration/login.html', {'form': form})
+            return render(request, "registration/login.html", {"form": form})

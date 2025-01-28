@@ -11,10 +11,7 @@ class RedactorUsernameSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by username",
-                "class": "form-control"
-            }
+            attrs={"placeholder": "Search by username", "class": "form-control"}
         ),
     )
 
@@ -25,10 +22,7 @@ class TopicSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by name",
-                "class": "form-control"
-            }
+            attrs={"placeholder": "Search by name", "class": "form-control"}
         ),
     )
 
@@ -39,10 +33,7 @@ class NewspaperTitleSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by title",
-                "class": "form-control"
-            }
+            attrs={"placeholder": "Search by title", "class": "form-control"}
         ),
     )
 
@@ -56,14 +47,8 @@ class NewspaperForm(forms.ModelForm):
         queryset=Topic.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
-    content = forms.CharField(
-        widget=forms.Textarea(attrs={
-            "class": "form-control"
-        }))
-    title = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
-    )
+    content = forms.CharField(widget=forms.Textarea(attrs={"class": "form-control"}))
+    title = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
 
     class Meta:
         model = Newspaper
@@ -72,31 +57,22 @@ class NewspaperForm(forms.ModelForm):
 
 class RedactorCreationForm(UserCreationForm):
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
+        widget=forms.TextInput(attrs={"class": "form-control"})
     )
-    last_name = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
-    )
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
-    )
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
     years_of_experience = forms.IntegerField(
-        widget=forms.NumberInput(attrs={
-            "class": "form-control"})
+        widget=forms.NumberInput(attrs={"class": "form-control"})
     )
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(attrs={
-            "label": "Password",
-            "class": "form-control"})
+        widget=forms.PasswordInput(
+            attrs={"label": "Password", "class": "form-control"}
+        ),
     )
     password2 = forms.CharField(
         label="Confirm password",
-        widget=forms.PasswordInput(attrs={
-            "class": "form-control"})
+        widget=forms.PasswordInput(attrs={"class": "form-control"}),
     )
 
     class Meta(UserCreationForm.Meta):
@@ -110,20 +86,12 @@ class RedactorCreationForm(UserCreationForm):
 
 class RedactorForm(forms.ModelForm):
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
+        widget=forms.TextInput(attrs={"class": "form-control"})
     )
-    last_name = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
-    )
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
-    )
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
     years_of_experience = forms.IntegerField(
-        widget=forms.NumberInput(attrs={
-            "class": "form-control"})
+        widget=forms.NumberInput(attrs={"class": "form-control"})
     )
 
     class Meta:
@@ -137,10 +105,7 @@ class RedactorForm(forms.ModelForm):
 
 
 class TopicForm(forms.ModelForm):
-    name = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control"})
-    )
+    name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
 
     class Meta:
         model = Topic

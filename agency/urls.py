@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (
+from agency.views import (
     index,
     TopicListView,
     TopicCreateView,
@@ -18,6 +18,7 @@ from .views import (
     RedactorDeleteView,
     toggle_assign_to_newspaper
 )
+
 
 urlpatterns = [
     path("", index, name="index"),

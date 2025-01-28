@@ -5,8 +5,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from agency.forms import TopicSearchForm, NewspaperTitleSearchForm, RedactorUsernameSearchForm, NewspaperForm, \
-    RedactorCreationForm, RedactorForm, TopicForm
+from agency.forms import (TopicSearchForm,
+                          NewspaperTitleSearchForm,
+                          RedactorUsernameSearchForm,
+                          NewspaperForm,
+                          RedactorCreationForm,
+                          RedactorForm,
+                          TopicForm)
 from agency.models import Redactor, Topic, Newspaper
 
 

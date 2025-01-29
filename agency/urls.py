@@ -58,7 +58,7 @@ urlpatterns = [
     ),
     path(
         "newspapers/<int:pk>/toggle-assign/",
-        ToggleAssignToNewspaperView,
+        ToggleAssignToNewspaperView.as_view(),
         name="toggle-newspaper-assign",
     ),
     path("redactors/", RedactorListView.as_view(), name="redactor-list"),

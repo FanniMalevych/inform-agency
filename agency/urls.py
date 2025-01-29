@@ -16,9 +16,8 @@ from agency.views import (
     RedactorCreateView,
     RedactorUpdateView,
     RedactorDeleteView,
-    toggle_assign_to_newspaper,
+    ToggleAssignToNewspaperView,
 )
-
 
 urlpatterns = [
     path("", index, name="index"),
@@ -59,7 +58,7 @@ urlpatterns = [
     ),
     path(
         "newspapers/<int:pk>/toggle-assign/",
-        toggle_assign_to_newspaper,
+        ToggleAssignToNewspaperView,
         name="toggle-newspaper-assign",
     ),
     path("redactors/", RedactorListView.as_view(), name="redactor-list"),
